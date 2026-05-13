@@ -1,6 +1,6 @@
 # CUDA Build Paradox Docker
 
-This repository provides a battle-tested Docker configuration for building `llama-cpp-python` with CUDA support, specifically targeting high-end NVIDIA GPUs (like the RTX 5090).
+This repository provides a battle-tested Docker configuration for building `llama-cpp-python` with CUDA support, specifically targeting high-end NVIDIA GPUs (like the RTX 5060 Ti).
 
 ## 🚀 The "Paradox" Fix
 The core issue when building CUDA-enabled Python packages in Docker is the missing `libcuda.so` during the build phase (as it's provided by the driver at runtime, not the devel image). 
