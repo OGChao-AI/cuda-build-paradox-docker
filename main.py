@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
     if bg_task:
         bg_task.cancel()
 
-app = FastAPI(title="CoreBot Llama-CPP Dynamic Server", lifespan=lifespan)
+app = FastAPI(title="Llama-CPP Dynamic Server", lifespan=lifespan)
 
 current_model_name: str = ""
 llm: Optional[Llama] = None
@@ -53,8 +53,7 @@ def get_or_load_model(model_name: str) -> Llama:
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at: {model_path}.")
 
-    print(f"
-🔄 Model switch requested. Loading: {model_name}...")
+    print(f"🔄 Model switch requested. Loading: {model_name}...")
     if llm is not None:
         print(f"🧹 Unloading previous model: {current_model_name}...")
         del llm 
@@ -79,8 +78,7 @@ async def unload_idle_model():
         if KEEP_ALIVE_SECONDS > 0 and llm is not None:
             idle_time = time.time() - last_access_time
             if idle_time > KEEP_ALIVE_SECONDS:
-                print(f"
-💤 Model '{current_model_name}' idle for {int(idle_time)}s. Unloading...")
+                print(f"💤 Model '{current_model_name}' idle for {int(idle_time)}s. Unloading...")
                 del llm
                 llm = None
                 current_model_name = ""
